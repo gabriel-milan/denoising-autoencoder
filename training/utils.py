@@ -18,7 +18,7 @@ def search_wav(data_path: str) -> list:
     return file_list
 
 
-def wav_to_np(file: str) -> Tuple(float, np.ndarray):
+def wav_to_np(file: str) -> Tuple[float, np.ndarray]:
     """Translate WAV file to numpy array"""
     with open(file, "rb") as wavfile:
         input_wav = wavfile.read()
@@ -38,7 +38,7 @@ def np_to_wav(rate: float, data: np.ndarray, filename: str) -> None:
         wavfile.close()
 
 
-def load_samples_from_file(filename: str, window_size: int = 320) -> Tuple(list, np.ndarray):
+def load_samples_from_file(filename: str, window_size: int = 320) -> Tuple[list, np.ndarray]:
     """Loads WAV file into array of samples of window_size"""
     rates = []
     samples = []
@@ -54,7 +54,7 @@ def load_samples_from_file(filename: str, window_size: int = 320) -> Tuple(list,
     return rates, np.array(samples)
 
 
-def generate_dataset(files: list) -> Tuple(list, np.ndarray):
+def generate_dataset(files: list) -> Tuple[list, np.ndarray]:
     """Generates dataset from list of files"""
     r, data = load_samples_from_file(files[0])
     for file in tqdm(files[1:]):

@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  model_deployment:
+    restart: unless-stopped
+    image: tensorflow/serving
+    ports:
+      - 8501:8501
+    volumes:
+      - "/home/gabriel-milan/GIT_REPOS/denoising-autoencoder/model_deployment/model:/models/test/:rw"
+    environment:
+      - MODEL_NAME=test
+  app:
+    restart: unless-stopped
+    build:
+      context: ./server
+    ports:
+      - 80:80
