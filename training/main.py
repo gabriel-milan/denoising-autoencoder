@@ -3,6 +3,7 @@
 #
 from utils import *
 from models import *
+from scaler import *
 import tensorflow.keras.backend as K
 from sklearn.model_selection import KFold
 from sklearn.preprocessing import MinMaxScaler
@@ -56,8 +57,7 @@ noisy_X = introduce_noise(X, scale=NOISE_SCALE)
 noisy_X_test = introduce_noise(X_test, scale=NOISE_SCALE)
 
 # Data normalization
-scaler = MinMaxScaler()
-scaler.fit(X)
+scaler = BitScaler(16)
 X = scaler.transform(X)
 noisy_X = scaler.transform(noisy_X)
 X_test = scaler.transform(X_test)
